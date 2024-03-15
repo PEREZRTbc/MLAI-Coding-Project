@@ -1,0 +1,82 @@
+# names = []
+#
+
+# names = "tesla"
+#
+# def company_search(name):
+#     from urllib.parse import urlencode
+#     api_key="d6c772a3-c100-49b4-88f2-87c130e4bca0"
+#     import urllib.request
+#     import json
+#     params = urlencode({
+#         "token": api_key,
+#         "companyName": name
+#         })
+#     url = f"https://api.goperigon.com/v1/stories/all?{(params)}"
+#     response_object = urllib.request.urlopen(url)
+#     print(response_object)
+#
+# company_search(names)
+import requests
+
+
+
+# import requests
+#
+# API_KEY = "d6c772a3-c100-49b4-88f2-87c130e4bca0"
+# url = f"https://api.goperigon.com/v1/stories/all?from=2023-03-01&to=2023-03-07&apiKey={API_KEY}"
+#
+# resp = requests.get(url)
+#
+# print(resp.json())
+
+# import requests
+#
+name = "tesla"
+#
+def company_search(name):
+    from urllib.parse import urlencode
+    API_KEY = "d6c772a3-c100-49b4-88f2-87c130e4bca0"
+    params = urlencode({
+        "from": "2003-03-01",
+        "to": "2021-03-01"
+        # "apiKey": API_KEY
+    })
+    print(params)
+    url = f"https://api.goperigon.com/v1/stories/all?apiKey=d6c772a3-c100-49b4-88f2-87c130e4bca0&showReprints=true{(params)}"
+    print(url)
+    response_object = requests.get(url)
+    return response_object
+#
+
+print(company_search(name))
+
+# import requests
+# import pandas as pd
+#
+# API_KEY = "d6c772a3-c100-49b4-88f2-87c130e4bca0"
+# url = f"https://api.goperigon.com/v1/all?companySymbol=AAPL&apiKey={API_KEY}"
+# print(url)
+#
+# resp = requests.get(url)
+# article = resp.json()
+# df = pd.DataFrame(article)
+#
+# print(article["title"])
+
+import requests
+import pandas as pd
+from pandas import json_normalize
+
+# API_KEY = "your_api_key_here"
+# url = f"https://api.goperigon.com/v1/all?companySymbol=AAPL&apiKey={API_KEY}"
+#
+# response = requests.get(url)
+# data = response.json()
+#
+# # Adjust the record path according to the structure of your JSON
+# articles = data.get("articles", [])
+# df = pd.DataFrame(articles)
+#
+# # Display the DataFrame to check its structure
+# print(df.head())  # Shows the first 5 rows of the DataFrame
