@@ -1,14 +1,54 @@
 import requests
 import pandas as pd
-API_KEY = "d6c772a3-c100-49b4-88f2-87c130e4bca0"
-url = f"https://api.goperigon.com/v1/all?companySymbol=AAPL&from=2022-03-01&to=2022-03-10&apiKey={API_KEY}"
+import time
+from datetime import datetime, timedelta
 
-resp = requests.get(url)
-print(resp)
-data = resp.json()
-data = data['articles']
-print(data)
-df = pd.DataFrame(data)
-print(df.head())
+def fetch_stock_data(symbol, start_date, end_date):
+    API_KEY = "d6c772a3-c100-49b4-88f2-87c130e4bca0"
+    base_url = "https://api.goperigon.com/v1/all"
+    current_date = start_date
 
-print(df.describe())
+    # Initialize an empty dataframe for accumulating results
+    accumulated_df = pd.DataFrame()
+
+    while current_date <= end_date:
+        # The start and end of the period (five days)
+        period_start = current_date
+        period_end = min(current_date + timedelta(days=4), end_date)
+
+        # Construct the request URL for the current period
+        url = f"{base_url}?companySymbol={symbol}&from={period_start.strftime('%Y-%m-%d')}&to={period_end.strftime('%Y-%m-%d')}&apiKey={API_KEY}"
+        print("Requesting:", url)
+        resp = requests.get(url)
+
+        if resp.status_code == 200:
+            data = resp.json().get('articles', [])
+            if data:  # Check if there's any data returned
+                df = pd.DataFrame(data)
+                # Append the new data to the accumulated dataframe
+                accumulated_df = pd.concat([accumulated_df, df], ignore_index=True)
+                print(f"Fetched data for {period_start.strftime('%Y-%m-%d')} to {period_end.strftime('%Y-%m-%d')}")
+            else:
+                print(f"No data for {period_start.strftime('%Y-%m-%d')} to {period_end.strftime('%Y-%m-%d')}")
+        else:
+            print(f"Failed to fetch data for {period_start.strftime('%Y-%m-%d')} to {period_end.strftime('%Y-%m-%d')}")
+
+        # Move to the next period (five days)
+        current_date = period_end + timedelta(days=1)
+        time.sleep(1)  # Throttle the requests
+
+    return accumulated_df
+
+# List of S&P 500 stock tickers
+snp500_tickers = ["AAPL", "MSFT", "GOOGL"]  # Add more tickers as needed
+
+start_date = datetime(2022, 3, 1)
+end_date = datetime(2022, 3, 31)  # Adjusted for a broader range
+
+# Iterate through each ticker and fetch data
+for ticker in snp500_tickers:
+    print(f"Fetching data for {ticker}")
+    df = fetch_stock_data(ticker, start_date, end_date)
+    
+    # Do further processing with the dataframe if needed
+    print(df.describe())  # Example: Print dataframe summary
