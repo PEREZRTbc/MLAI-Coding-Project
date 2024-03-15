@@ -1,4 +1,5 @@
-#articles
+#articles -- all attributes are stored as numpy arrays
+
 (Nick)  create an iterative function (get it from the Yelp API) that can call Perigon many times over. 
 
   
