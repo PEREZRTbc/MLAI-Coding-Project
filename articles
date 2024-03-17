@@ -25,6 +25,7 @@ def fetch_stock_data(symbol, start_date, end_date):
             data = resp.json().get('articles', [])
             if data:  # Check if there's any data returned
                 df = pd.DataFrame(data)
+                df['StockSymbol'] = symbol
                 # Append the new data to the accumulated dataframe
                 accumulated_df = pd.concat([accumulated_df, df], ignore_index=True)
                 print(f"Fetched data for {period_start.strftime('%Y-%m-%d')} to {period_end.strftime('%Y-%m-%d')}")
