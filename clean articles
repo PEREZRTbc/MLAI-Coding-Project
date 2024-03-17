@@ -1,0 +1,33 @@
+library(tidyverse)
+library(mosaic)
+library(plm)
+library(sandwich)
+library(lmtest)
+library(GGally)
+library(wooldridge)
+
+library(plm)
+library(tidyverse)
+library(mosaic)
+library(GGally)
+library(lmtest)
+library(sandwich)
+library(margins)
+library(lubridate)
+
+cellban <- read_csv("data1.csv")
+
+
+cellban <- cellban %>%
+  mutate(
+    # Splitting the values on space and extracting the first part (date)
+    date = map_chr(str_split(pubDate, " "), 1),
+    positive = as.numeric(str_extract(sentiment, "(?<=positive': )[0-9.]+")),
+    negative = as.numeric(str_extract(sentiment, "(?<=negative': )[0-9.]+")),
+    neutral = as.numeric(str_extract(sentiment, "(?<=neutral': )[0-9.]+")),
+    domain = str_extract(source, "(?<=domain': ')[^']+")
+  )
+ 
+
+view(cellban)
+    
