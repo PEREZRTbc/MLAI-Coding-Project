@@ -13,7 +13,7 @@ Nick's Companies:
 6  Tesla Inc. (TSLA): 1.87%
 7  Meta Platforms Inc. (META), formerly Facebook, Class A: 1.84%
 
-Ricardo's Articles:
+Ricardo's Companies:
 
 8  Alphabet Inc. Class C (GOOG): 1.83%
 9  Berkshire Hathaway Inc. (BRK.B): 1.81%
@@ -23,7 +23,7 @@ Ricardo's Articles:
 13  JPMorgan Chase & Co. (JPM): 1.17%
 14  Johnson & Johnson (JNJ): 1.07%
 
-Brendan's Articles:
+Brendan's Companies:
 
 15  Visa Inc. Class A (V): 1.04%
 16  The Procter & Gamble Co. (PG): 0.99%
