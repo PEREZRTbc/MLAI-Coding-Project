@@ -1,3 +1,6 @@
+#EXTRA API KEY FOR PERIGON (taken from Ricardo's BC email)
+c023495e-e39c-4d95-857d-a3cf9436ca05
+
 #investipedia article that ranks the top 25 s&p 500 companies
 https://www.investopedia.com/top-25-stocks-in-the-s-and-p-500-7974612
 
