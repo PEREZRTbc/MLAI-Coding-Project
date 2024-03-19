@@ -32,6 +32,8 @@ Brendan's Companies:
 16  The Procter & Gamble Co. (PG): 0.99%
 17  Broadcom Inc. (AVGO): 0.95%
 18  Mastercard Inc. Class A (MA): 0.92%
-19  Home Depot Inc. (HD): 0.85%
+19  
+
+Home Depot Inc. (HD): 0.85%(start here)
 20  Chevron Corp. (CVX): 0.82%
 21  Merck & Co. Inc. (MRK): 0.75%
